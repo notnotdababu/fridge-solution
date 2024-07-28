@@ -1,1 +1,84 @@
-"wait(5)\r\n\r\n--[[ Info ]]--\r\n\r\nlocal ver = \"2.00\"\r\nlocal scriptname = \"feFlip\"\r\n\r\n\r\n--[[ Keybinds ]]--\r\n\r\nlocal FrontflipKey = Enum.KeyCode.Z\r\nlocal BackflipKey = Enum.KeyCode.X\r\nlocal AirjumpKey = Enum.KeyCode.C\r\n\r\n\r\n--[[ Dependencies ]]--\r\n\r\nlocal ca = game:GetService(\"ContextActionService\")\r\nlocal zeezy = game:GetService(\"Players\").LocalPlayer\r\nlocal h = 0.0174533\r\nlocal antigrav\r\n\r\n\r\n--[[ Functions ]]--\r\n\r\nfunction zeezyFrontflip(act,inp,obj)\r\n\tif inp == Enum.UserInputState.Begin then\r\n\t\tzeezy.Character.Humanoid:ChangeState(\"Jumping\")\r\n\t\twait()\r\n\t\tzeezy.Character.Humanoid.Sit = true\r\n\t\tfor i = 1,360 do \r\n\t\t\tdelay(i/720,function()\r\n\t\t\tzeezy.Character.Humanoid.Sit = true\r\n\t\t\t\tzeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(-h,0,0)\r\n\t\t\tend)\r\n\t\tend\r\n\t\twait(0.55)\r\n\t\tzeezy.Character.Humanoid.Sit = false\r\n\tend\r\nend\r\n\r\nfunction zeezyBackflip(act,inp,obj)\r\n\tif inp == Enum.UserInputState.Begin then\r\n\t\tzeezy.Character.Humanoid:ChangeState(\"Jumping\")\r\n\t\twait()\r\n\t\tzeezy.Character.Humanoid.Sit = true\r\n\t\tfor i = 1,360 do\r\n\t\t\tdelay(i/720,function()\r\n\t\t\tzeezy.Character.Humanoid.Sit = true\r\n\t\t\t\tzeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(h,0,0)\r\n\t\t\tend)\r\n\t\tend\r\n\t\twait(0.55)\r\n\t\tzeezy.Character.Humanoid.Sit = false\r\n\tend\r\nend\r\n\r\nfunction zeezyAirjump(act,inp,obj)\r\n\tif inp == Enum.UserInputState.Begin then\r\n\t\tzeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState(\"Seated\")\r\n\t\twait()\r\n\t\tzeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState(\"Jumping\")\t\r\n\tend\r\nend\r\n\r\n\r\n--[[ Binds ]]--\r\n\r\nca:BindAction(\"zeezyFrontflip\",zeezyFrontflip,false,FrontflipKey)\r\nca:BindAction(\"zeezyBackflip\",zeezyBackflip,false,BackflipKey)\r\nca:BindAction(\"zeezyAirjump\",zeezyAirjump,false,AirjumpKey)\r\n\r\n--[[ Load Message ]]--\r\n\r\nprint(scriptname .. \" \" .. ver .. \" loaded successfully\")\r\nprint(\"made by Zeezy#7203\")\r\n\r\nlocal notifSound = Instance.new(\"Sound\",workspace)\r\nnotifSound.PlaybackSpeed = 1.5\r\nnotifSound.Volume = 0.15\r\nnotifSound.SoundId = \"rbxassetid://170765130\"\r\nnotifSound.PlayOnRemove = true\r\nnotifSound:Destroy()\r\ngame.StarterGui:SetCore(\"SendNotification\", {Title = \"feFlip\", Text = \"feFlip loaded successfully!\", Icon = \"rbxassetid://505845268\", Duration = 5, Button1 = \"Okay\"})"
+wait(5)
+
+--[[ Info ]]--
+
+local ver = "2.00"
+local scriptname = "feFlip"
+
+
+--[[ Keybinds ]]--
+
+local FrontflipKey = Enum.KeyCode.Z
+local BackflipKey = Enum.KeyCode.X
+local AirjumpKey = Enum.KeyCode.C
+
+
+--[[ Dependencies ]]--
+
+local ca = game:GetService("ContextActionService")
+local zeezy = game:GetService("Players").LocalPlayer
+local h = 0.0174533
+local antigrav
+
+
+--[[ Functions ]]--
+
+function zeezyFrontflip(act,inp,obj)
+	if inp == Enum.UserInputState.Begin then
+		zeezy.Character.Humanoid:ChangeState("Jumping")
+		wait()
+		zeezy.Character.Humanoid.Sit = true
+		for i = 1,360 do 
+			delay(i/720,function()
+			zeezy.Character.Humanoid.Sit = true
+				zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(-h,0,0)
+			end)
+		end
+		wait(0.55)
+		zeezy.Character.Humanoid.Sit = false
+	end
+end
+
+function zeezyBackflip(act,inp,obj)
+	if inp == Enum.UserInputState.Begin then
+		zeezy.Character.Humanoid:ChangeState("Jumping")
+		wait()
+		zeezy.Character.Humanoid.Sit = true
+		for i = 1,360 do
+			delay(i/720,function()
+			zeezy.Character.Humanoid.Sit = true
+				zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(h,0,0)
+			end)
+		end
+		wait(0.55)
+		zeezy.Character.Humanoid.Sit = false
+	end
+end
+
+function zeezyAirjump(act,inp,obj)
+	if inp == Enum.UserInputState.Begin then
+		zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Seated")
+		wait()
+		zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")	
+	end
+end
+
+
+--[[ Binds ]]--
+
+ca:BindAction("zeezyFrontflip",zeezyFrontflip,false,FrontflipKey)
+ca:BindAction("zeezyBackflip",zeezyBackflip,false,BackflipKey)
+ca:BindAction("zeezyAirjump",zeezyAirjump,false,AirjumpKey)
+
+--[[ Load Message ]]--
+
+print(scriptname .. " " .. ver .. " loaded successfully")
+print("made by Zeezy#7203")
+
+local notifSound = Instance.new("Sound",workspace)
+notifSound.PlaybackSpeed = 1.5
+notifSound.Volume = 0.15
+notifSound.SoundId = "rbxassetid://170765130"
+notifSound.PlayOnRemove = true
+notifSound:Destroy()
+game.StarterGui:SetCore("SendNotification", {Title = "feFlip", Text = "feFlip loaded successfully!", Icon = "rbxassetid://505845268", Duration = 5, Button1 = "Okay"})
