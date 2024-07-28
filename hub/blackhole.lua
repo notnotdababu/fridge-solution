@@ -1,1 +1,72 @@
-"---- Keybinds: E - Teleport to position wherever your cursor is at!\r\n\r\n\r\nlocal UserInputService = game:GetService(\"UserInputService\")\r\nlocal Mouse = game:GetService(\"Players\").LocalPlayer:GetMouse()\r\nlocal Folder = Instance.new(\"Folder\", game:GetService(\"Workspace\"))\r\nlocal Part = Instance.new(\"Part\", Folder)\r\nlocal Attachment1 = Instance.new(\"Attachment\", Part)\r\nPart.Anchored = true\r\nPart.CanCollide = false\r\nPart.Transparency = 1\r\nlocal Updated = Mouse.Hit + Vector3.new(0, 5, 0)\r\nlocal NetworkAccess = coroutine.create(function()\r\n    settings().Physics.AllowSleep = false\r\n    while game:GetService(\"RunService\").RenderStepped:Wait() do\r\n        for _, Players in next, game:GetService(\"Players\"):GetPlayers() do\r\n            if Players ~= game:GetService(\"Players\").LocalPlayer then\r\n                Players.MaximumSimulationRadius = 0 \r\n                sethiddenproperty(Players, \"SimulationRadius\", 0) \r\n            end \r\n        end\r\n        game:GetService(\"Players\").LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)\r\n        setsimulationradius(math.huge) \r\n    end \r\nend) \r\ncoroutine.resume(NetworkAccess)\r\nlocal function ForcePart(v)\r\n    if v:IsA(\"Part\") and v.Anchored == false and v.Parent:FindFirstChild(\"Humanoid\") == nil and v.Parent:FindFirstChild(\"Head\") == nil and v.Name ~= \"Handle\" then\r\n        Mouse.TargetFilter = v\r\n        for _, x in next, v:GetChildren() do\r\n            if x:IsA(\"BodyAngularVelocity\") or x:IsA(\"BodyForce\") or x:IsA(\"BodyGyro\") or x:IsA(\"BodyPosition\") or x:IsA(\"BodyThrust\") or x:IsA(\"BodyVelocity\") or x:IsA(\"RocketPropulsion\") then\r\n                x:Destroy()\r\n            end\r\n        end\r\n        if v:FindFirstChild(\"Attachment\") then\r\n            v:FindFirstChild(\"Attachment\"):Destroy()\r\n        end\r\n        if v:FindFirstChild(\"AlignPosition\") then\r\n            v:FindFirstChild(\"AlignPosition\"):Destroy()\r\n        end\r\n        if v:FindFirstChild(\"Torque\") then\r\n            v:FindFirstChild(\"Torque\"):Destroy()\r\n        end\r\n        v.CanCollide = false\r\n        local Torque = Instance.new(\"Torque\", v)\r\n        Torque.Torque = Vector3.new(100000, 100000, 100000)\r\n        local AlignPosition = Instance.new(\"AlignPosition\", v)\r\n        local Attachment2 = Instance.new(\"Attachment\", v)\r\n        Torque.Attachment0 = Attachment2\r\n        AlignPosition.MaxForce = 9999999999999999\r\n        AlignPosition.MaxVelocity = math.huge\r\n        AlignPosition.Responsiveness = 200\r\n        AlignPosition.Attachment0 = Attachment2 \r\n        AlignPosition.Attachment1 = Attachment1\r\n    end\r\nend\r\nfor _, v in next, game:GetService(\"Workspace\"):GetDescendants() do\r\n    ForcePart(v)\r\nend\r\ngame:GetService(\"Workspace\").DescendantAdded:Connect(function(v)\r\n    ForcePart(v)\r\nend)\r\nUserInputService.InputBegan:Connect(function(Key, Chat)\r\n    if Key.KeyCode == Enum.KeyCode.E and not Chat then\r\n       Updated = Mouse.Hit + Vector3.new(0, 5, 0)\r\n    end\r\nend)\r\nspawn(function()\r\n    while game:GetService(\"RunService\").RenderStepped:Wait() do\r\n        Attachment1.WorldCFrame = Updated\r\n    end\r\nend)"
+---- Keybinds: E - Teleport to position wherever your cursor is at!
+
+
+local UserInputService = game:GetService("UserInputService")
+local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local Folder = Instance.new("Folder", game:GetService("Workspace"))
+local Part = Instance.new("Part", Folder)
+local Attachment1 = Instance.new("Attachment", Part)
+Part.Anchored = true
+Part.CanCollide = false
+Part.Transparency = 1
+local Updated = Mouse.Hit + Vector3.new(0, 5, 0)
+local NetworkAccess = coroutine.create(function()
+    settings().Physics.AllowSleep = false
+    while game:GetService("RunService").RenderStepped:Wait() do
+        for _, Players in next, game:GetService("Players"):GetPlayers() do
+            if Players ~= game:GetService("Players").LocalPlayer then
+                Players.MaximumSimulationRadius = 0 
+                sethiddenproperty(Players, "SimulationRadius", 0) 
+            end 
+        end
+        game:GetService("Players").LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)
+        setsimulationradius(math.huge) 
+    end 
+end) 
+coroutine.resume(NetworkAccess)
+local function ForcePart(v)
+    if v:IsA("Part") and v.Anchored == false and v.Parent:FindFirstChild("Humanoid") == nil and v.Parent:FindFirstChild("Head") == nil and v.Name ~= "Handle" then
+        Mouse.TargetFilter = v
+        for _, x in next, v:GetChildren() do
+            if x:IsA("BodyAngularVelocity") or x:IsA("BodyForce") or x:IsA("BodyGyro") or x:IsA("BodyPosition") or x:IsA("BodyThrust") or x:IsA("BodyVelocity") or x:IsA("RocketPropulsion") then
+                x:Destroy()
+            end
+        end
+        if v:FindFirstChild("Attachment") then
+            v:FindFirstChild("Attachment"):Destroy()
+        end
+        if v:FindFirstChild("AlignPosition") then
+            v:FindFirstChild("AlignPosition"):Destroy()
+        end
+        if v:FindFirstChild("Torque") then
+            v:FindFirstChild("Torque"):Destroy()
+        end
+        v.CanCollide = false
+        local Torque = Instance.new("Torque", v)
+        Torque.Torque = Vector3.new(100000, 100000, 100000)
+        local AlignPosition = Instance.new("AlignPosition", v)
+        local Attachment2 = Instance.new("Attachment", v)
+        Torque.Attachment0 = Attachment2
+        AlignPosition.MaxForce = 9999999999999999
+        AlignPosition.MaxVelocity = math.huge
+        AlignPosition.Responsiveness = 200
+        AlignPosition.Attachment0 = Attachment2 
+        AlignPosition.Attachment1 = Attachment1
+    end
+end
+for _, v in next, game:GetService("Workspace"):GetDescendants() do
+    ForcePart(v)
+end
+game:GetService("Workspace").DescendantAdded:Connect(function(v)
+    ForcePart(v)
+end)
+UserInputService.InputBegan:Connect(function(Key, Chat)
+    if Key.KeyCode == Enum.KeyCode.E and not Chat then
+       Updated = Mouse.Hit + Vector3.new(0, 5, 0)
+    end
+end)
+spawn(function()
+    while game:GetService("RunService").RenderStepped:Wait() do
+        Attachment1.WorldCFrame = Updated
+    end
+end)
