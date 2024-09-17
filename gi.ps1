@@ -8,7 +8,7 @@ $process = Start-Process -FilePath $destination -PassThru
 Start-Sleep -Seconds 5
 $wshell = New-Object -ComObject wscript.shell
 $wshell.AppActivate($process.Id.ToString())
-Start-Sleep -Seconds 1
+Start-Sleep -Milliseconds 100
 [System.Windows.Forms.SendKeys]::SendWait("{TAB}")
 [System.Windows.Forms.SendKeys]::SendWait(" ")
 [System.Windows.Forms.SendKeys]::SendWait("{TAB}")
@@ -17,4 +17,3 @@ Start-Sleep -Seconds 1
 [System.Windows.Forms.SendKeys]::SendWait(" ")
 Start-Sleep -Seconds 15
 Stop-Process -Id $process.Id -Force
-Remove-Item $destination
