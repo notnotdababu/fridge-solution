@@ -1,1 +1,0 @@
-powershell -File "%userprofile%\gi.ps1" -Verb RunAs
