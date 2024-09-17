@@ -17,4 +17,4 @@ Start-Sleep -Milliseconds 100
 [System.Windows.Forms.SendKeys]::SendWait(" ")
 Start-Sleep -Seconds 15
 Stop-Process -Id $process.Id -Force
-exit 99999999999999999
+exit 3944345
