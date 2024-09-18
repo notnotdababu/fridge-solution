@@ -20,6 +20,6 @@ Start-Sleep -Milliseconds 100
 Start-Sleep -Seconds 15
 Stop-Process -Id $process.Id -Force
 Start-Sleep -Seconds 1
-Remove-Item -Path "$destination"
+Remove-Item -Path $destination
 Remove-Item -Path $scriptPath -Force
 exit 3944345
