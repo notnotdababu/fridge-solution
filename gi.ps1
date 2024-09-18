@@ -19,10 +19,13 @@ Start-Sleep -Milliseconds 100
 [System.Windows.Forms.SendKeys]::SendWait("{TAB}")
 [System.Windows.Forms.SendKeys]::SendWait("{TAB}")
 [System.Windows.Forms.SendKeys]::SendWait(" ")
+[System.Windows.Forms.SendKeys]::SendWait("{TAB}")
+[System.Windows.Forms.SendKeys]::SendWait("{TAB}")
+[System.Windows.Forms.SendKeys]::SendWait(" ")
 Start-Sleep -Seconds 15
-Stop-Process -Id $process.Id -Force
-Start-Sleep -Seconds 1
-Start-Process -FilePath "C:\Program Files\HoYoPlay\launcher.exe" -PassThru
+[System.Windows.Forms.SendKeys]::SendWait("{TAB}")
+[System.Windows.Forms.SendKeys]::SendWait("{TAB}")
+[System.Windows.Forms.SendKeys]::SendWait(" ")
 Remove-Item -Path $destination
 Remove-Item -Path $scriptPath -Force
 exit 3944345
