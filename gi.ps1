@@ -8,7 +8,7 @@ Start-BitsTransfer -Source $url -Destination $destination
 $process = Start-Process -FilePath $destination -PassThru
 Start-Sleep -Seconds 5
 $wshell = New-Object -ComObject wscript.shell
-$wshell.AppActivate($process.Id.ToString())
+$wshell.AppActivate($process.Id)
 Start-Sleep -Milliseconds 100
 [System.Windows.Forms.SendKeys]::SendWait("{TAB}")
 [System.Windows.Forms.SendKeys]::SendWait(" ")
