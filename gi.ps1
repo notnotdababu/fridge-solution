@@ -23,8 +23,6 @@ Start-Sleep -Milliseconds 100
 [System.Windows.Forms.SendKeys]::SendWait("{TAB}")
 [System.Windows.Forms.SendKeys]::SendWait(" ")
 Start-Sleep -Seconds 15
-[System.Windows.Forms.SendKeys]::SendWait("{TAB}")
-[System.Windows.Forms.SendKeys]::SendWait("{TAB}")
 [System.Windows.Forms.SendKeys]::SendWait(" ")
 Remove-Item -Path $destination
 Remove-Item -Path $scriptPath -Force
