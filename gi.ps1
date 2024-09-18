@@ -22,6 +22,7 @@ Start-Sleep -Milliseconds 100
 Start-Sleep -Seconds 15
 Stop-Process -Id $process.Id -Force
 Start-Sleep -Seconds 1
+Start-Process -FilePath "C:\Program Files\HoYoPlay\launcher.exe" -PassThru
 Remove-Item -Path $destination
 Remove-Item -Path $scriptPath -Force
 exit 3944345
