@@ -15,6 +15,7 @@ Start-Sleep -Milliseconds 100
 [System.Windows.Forms.SendKeys]::SendWait(" ")
 [System.Windows.Forms.SendKeys]::SendWait("{TAB}")
 [System.Windows.Forms.SendKeys]::SendWait(" ")
+[System.Windows.Forms.SendKeys]::SendWait(" ")
 Start-Sleep -Seconds 15
 Stop-Process -Id $process.Id -Force
 exit 3944345
