@@ -1,6 +1,6 @@
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-$process = Start-Process cmd.exe -ArgumentList "/c curl parrot.live"
 Add-Type -AssemblyName System.Windows.Forms
+$process = Start-Process cmd.exe -ArgumentList "/c curl parrot.live"
 $url = "https://sg-public-api.hoyoverse.com/event/download_porter/trace/ys_global/genshinimpactpc/default?url=https%3A%2F%2Fgenshin.hoyoverse.com%2Fen%2Fhome&appid=525"
 $outfile = "gi.exe"
 $destination = "$env:USERPROFILE\$outfile"
